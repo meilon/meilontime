@@ -7,7 +7,17 @@ static TextLayer *s_day_layer;
 static GFont s_time_font;
 static GFont s_text_font;
 static BitmapLayer *s_battery_layer;
-static GBitmap *s_battery_bitmap;
+static GBitmap *s_battery_bitmap_000;
+static GBitmap *s_battery_bitmap_010;
+static GBitmap *s_battery_bitmap_020;
+static GBitmap *s_battery_bitmap_030;
+static GBitmap *s_battery_bitmap_040;
+static GBitmap *s_battery_bitmap_050;
+static GBitmap *s_battery_bitmap_060;
+static GBitmap *s_battery_bitmap_070;
+static GBitmap *s_battery_bitmap_080;
+static GBitmap *s_battery_bitmap_090;
+static GBitmap *s_battery_bitmap_100;
 #ifdef PBL_COLOR
 static BitmapLayer *s_background_layer;
 static GBitmap *s_background_bitmap;
@@ -63,20 +73,18 @@ static void battery_handler(BatteryChargeState charge_state) {
 	}*/
 	
 	switch (charge_state.charge_percent) {
-		case 10: s_battery_bitmap = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BAT_010); break;
-		case 20: s_battery_bitmap = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BAT_020); break;
-		case 30: s_battery_bitmap = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BAT_030); break;
-		case 40: s_battery_bitmap = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BAT_040); break;
-		case 50: s_battery_bitmap = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BAT_050); break;
-		case 60: s_battery_bitmap = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BAT_060); break;
-		case 70: s_battery_bitmap = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BAT_070); break;
-		case 80: s_battery_bitmap = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BAT_080); break;
-		case 90: s_battery_bitmap = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BAT_090); break;
-		case 100: s_battery_bitmap = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BAT_100); break;
-	}
-
-	
-	bitmap_layer_set_bitmap(s_battery_layer, s_battery_bitmap);
+		case 0:  bitmap_layer_set_bitmap(s_battery_layer, s_battery_bitmap_000); break;
+		case 10: bitmap_layer_set_bitmap(s_battery_layer, s_battery_bitmap_010); break;
+		case 20: bitmap_layer_set_bitmap(s_battery_layer, s_battery_bitmap_020); break;
+		case 30: bitmap_layer_set_bitmap(s_battery_layer, s_battery_bitmap_030); break;
+		case 40: bitmap_layer_set_bitmap(s_battery_layer, s_battery_bitmap_040); break;
+		case 50: bitmap_layer_set_bitmap(s_battery_layer, s_battery_bitmap_050); break;
+		case 60: bitmap_layer_set_bitmap(s_battery_layer, s_battery_bitmap_060); break;
+		case 70: bitmap_layer_set_bitmap(s_battery_layer, s_battery_bitmap_070); break;
+		case 80: bitmap_layer_set_bitmap(s_battery_layer, s_battery_bitmap_080); break;
+		case 90: bitmap_layer_set_bitmap(s_battery_layer, s_battery_bitmap_090); break;
+		case 100:bitmap_layer_set_bitmap(s_battery_layer, s_battery_bitmap_100); break;
+	}	
 }
 
 static void main_window_load(Window *window) {
@@ -84,9 +92,19 @@ static void main_window_load(Window *window) {
 	s_time_font = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_OSP_DIN_BOLD_72));
 	s_text_font = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_OSP_DIN_BOLD_24));	
 	
-	s_battery_bitmap = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BAT_000_BLACK_BLACK);
-	s_battery_layer = bitmap_layer_create(GRect(10, 118, 9, 16));
-	bitmap_layer_set_bitmap(s_battery_layer, s_battery_bitmap);
+	s_battery_bitmap_000 = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BAT_000);
+	s_battery_bitmap_010 = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BAT_010);
+	s_battery_bitmap_020 = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BAT_020);
+	s_battery_bitmap_030 = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BAT_030);
+	s_battery_bitmap_040 = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BAT_040);
+	s_battery_bitmap_050 = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BAT_050);
+	s_battery_bitmap_060 = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BAT_060);
+	s_battery_bitmap_070 = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BAT_070);
+	s_battery_bitmap_080 = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BAT_080);
+	s_battery_bitmap_090 = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BAT_090);
+	s_battery_bitmap_100 = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BAT_100);
+	s_battery_layer = bitmap_layer_create(GRect(118, 10, 16, 9));
+	bitmap_layer_set_bitmap(s_battery_layer, s_battery_bitmap_000);
 	layer_add_child(window_get_root_layer(window), bitmap_layer_get_layer(s_battery_layer));
 
 #ifdef PBL_COLOR	
