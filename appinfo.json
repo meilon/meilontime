@@ -1,0 +1,42 @@
+{
+    "appKeys": {},
+    "capabilities": [
+        ""
+    ],
+    "companyName": "christian-arnold@gmx.net",
+    "longName": "meilon",
+    "projectType": "native",
+    "resources": {
+        "media": [
+            {
+                "characterRegex": "[a-zA-Z0-9.]",
+                "file": "fonts/OSP-DIN.ttf",
+                "name": "FONT_OSP_DIN_BOLD_24",
+                "type": "font"
+            },
+            {
+                "characterRegex": "[0-9:]",
+                "file": "fonts/OSP-DIN.ttf",
+                "name": "FONT_OSP_DIN_BOLD_72",
+                "type": "font"
+            },
+            {
+                "file": "images/MyTime.png",
+                "name": "IMAGE_BACKGROUND",
+                "type": "png"
+            }
+        ]
+    },
+    "sdkVersion": "3",
+    "shortName": "meilon",
+    "targetPlatforms": [
+        "aplite",
+        "basalt"
+    ],
+    "uuid": "622aa19c-cfa5-4a93-899b-f78ba92015e5",
+    "versionCode": 1,
+    "versionLabel": "1.0",
+    "watchapp": {
+        "watchface": true
+    }
+}
