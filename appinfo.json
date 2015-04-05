@@ -24,6 +24,61 @@
                 "file": "images/MyTime.png",
                 "name": "IMAGE_BACKGROUND",
                 "type": "png"
+            },
+            {
+                "file": "images/bat-00.png",
+                "name": "IMAGE_BAT_000",
+                "type": "png"
+            },
+            {
+                "file": "images/bat-01.png",
+                "name": "IMAGE_BAT_010",
+                "type": "png"
+            },
+            {
+                "file": "images/bat-02.png",
+                "name": "IMAGE_BAT_020",
+                "type": "png"
+            },
+            {
+                "file": "images/bat-03.png",
+                "name": "IMAGE_BAT_030",
+                "type": "png"
+            },
+            {
+                "file": "images/bat-04.png",
+                "name": "IMAGE_BAT_040",
+                "type": "png"
+            },
+            {
+                "file": "images/bat-05.png",
+                "name": "IMAGE_BAT_050",
+                "type": "png"
+            },
+            {
+                "file": "images/bat-06.png",
+                "name": "IMAGE_BAT_060",
+                "type": "png"
+            },
+            {
+                "file": "images/bat-07.png",
+                "name": "IMAGE_BAT_070",
+                "type": "png"
+            },
+            {
+                "file": "images/bat-08.png",
+                "name": "IMAGE_BAT_080",
+                "type": "png"
+            },
+            {
+                "file": "images/bat-09.png",
+                "name": "IMAGE_BAT_090",
+                "type": "png"
+            },
+            {
+                "file": "images/bat-10.png",
+                "name": "IMAGE_BAT_100",
+                "type": "png"
             }
         ]
     },
