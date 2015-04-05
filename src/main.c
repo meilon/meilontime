@@ -63,16 +63,16 @@ static void battery_handler(BatteryChargeState charge_state) {
 	}*/
 	
 	switch (charge_state.charge_percent) {
-		case 10: s_battery_bitmap = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BAT_010_BLACK_BLACK); break;
-		case 20: s_battery_bitmap = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BAT_020_BLACK_BLACK); break;
-		case 30: s_battery_bitmap = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BAT_030_BLACK_BLACK); break;
-		case 40: s_battery_bitmap = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BAT_040_BLACK_BLACK); break;
-		case 50: s_battery_bitmap = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BAT_050_BLACK_BLACK); break;
-		case 60: s_battery_bitmap = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BAT_060_BLACK_BLACK); break;
-		case 70: s_battery_bitmap = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BAT_070_BLACK_BLACK); break;
-		case 80: s_battery_bitmap = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BAT_080_BLACK_BLACK); break;
-		case 90: s_battery_bitmap = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BAT_090_BLACK_BLACK); break;
-		case 100: s_battery_bitmap = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BAT_100_BLACK_BLACK); break;
+		case 10: s_battery_bitmap = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BAT_010); break;
+		case 20: s_battery_bitmap = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BAT_020); break;
+		case 30: s_battery_bitmap = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BAT_030); break;
+		case 40: s_battery_bitmap = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BAT_040); break;
+		case 50: s_battery_bitmap = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BAT_050); break;
+		case 60: s_battery_bitmap = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BAT_060); break;
+		case 70: s_battery_bitmap = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BAT_070); break;
+		case 80: s_battery_bitmap = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BAT_080); break;
+		case 90: s_battery_bitmap = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BAT_090); break;
+		case 100: s_battery_bitmap = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BAT_100); break;
 	}
 
 	
