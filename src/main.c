@@ -92,19 +92,19 @@ static void main_window_load(Window *window) {
 	s_time_font = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_OSP_DIN_BOLD_72));
 	s_text_font = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_OSP_DIN_BOLD_24));	
 	
-	s_battery_bitmap_000 = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BAT_000);
-	s_battery_bitmap_010 = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BAT_010);
-	s_battery_bitmap_020 = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BAT_020);
-	s_battery_bitmap_030 = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BAT_030);
-	s_battery_bitmap_040 = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BAT_040);
-	s_battery_bitmap_050 = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BAT_050);
-	s_battery_bitmap_060 = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BAT_060);
-	s_battery_bitmap_070 = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BAT_070);
-	s_battery_bitmap_080 = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BAT_080);
-	s_battery_bitmap_090 = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BAT_090);
-	s_battery_bitmap_100 = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BAT_100);
+	s_battery_bitmap_000 = gbitmap_create_with_resource(RESOURCE_ID_PNG_IMAGE_BAT_000);
+	s_battery_bitmap_010 = gbitmap_create_with_resource(RESOURCE_ID_PNG_IMAGE_BAT_010);
+	s_battery_bitmap_020 = gbitmap_create_with_resource(RESOURCE_ID_PNG_IMAGE_BAT_020);
+	s_battery_bitmap_030 = gbitmap_create_with_resource(RESOURCE_ID_PNG_IMAGE_BAT_030);
+	s_battery_bitmap_040 = gbitmap_create_with_resource(RESOURCE_ID_PNG_IMAGE_BAT_040);
+	s_battery_bitmap_050 = gbitmap_create_with_resource(RESOURCE_ID_PNG_IMAGE_BAT_050);
+	s_battery_bitmap_060 = gbitmap_create_with_resource(RESOURCE_ID_PNG_IMAGE_BAT_060);
+	s_battery_bitmap_070 = gbitmap_create_with_resource(RESOURCE_ID_PNG_IMAGE_BAT_070);
+	s_battery_bitmap_080 = gbitmap_create_with_resource(RESOURCE_ID_PNG_IMAGE_BAT_080);
+	s_battery_bitmap_090 = gbitmap_create_with_resource(RESOURCE_ID_PNG_IMAGE_BAT_090);
+	s_battery_bitmap_100 = gbitmap_create_with_resource(RESOURCE_ID_PNG_IMAGE_BAT_100);
 	s_battery_layer = bitmap_layer_create(GRect(118, 10, 16, 9));
-    bitmap_layer_set_compositing_mode(s_battery_layer, GCompOpAnd)
+    bitmap_layer_set_compositing_mode(s_battery_layer, GCompOpAnd);
 	bitmap_layer_set_bitmap(s_battery_layer, s_battery_bitmap_000);
 	layer_add_child(window_get_root_layer(window), bitmap_layer_get_layer(s_battery_layer));
 
