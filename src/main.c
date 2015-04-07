@@ -104,6 +104,7 @@ static void main_window_load(Window *window) {
 	s_battery_bitmap_090 = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BAT_090);
 	s_battery_bitmap_100 = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BAT_100);
 	s_battery_layer = bitmap_layer_create(GRect(118, 10, 16, 9));
+    bitmap_layer_set_compositing_mode(s_battery_layer, GCompOpAnd)
 	bitmap_layer_set_bitmap(s_battery_layer, s_battery_bitmap_000);
 	layer_add_child(window_get_root_layer(window), bitmap_layer_get_layer(s_battery_layer));
 
