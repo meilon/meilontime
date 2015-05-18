@@ -179,6 +179,19 @@ static void main_window_unload(Window *window) {
 	// Destroy BitmapLayer
 	bitmap_layer_destroy(s_background_layer);
 #endif
+	
+	gbitmap_destroy(s_battery_bitmap_000);
+	gbitmap_destroy(s_battery_bitmap_010);
+	gbitmap_destroy(s_battery_bitmap_020);
+	gbitmap_destroy(s_battery_bitmap_030);
+	gbitmap_destroy(s_battery_bitmap_040);
+	gbitmap_destroy(s_battery_bitmap_050);
+	gbitmap_destroy(s_battery_bitmap_060);
+	gbitmap_destroy(s_battery_bitmap_070);
+	gbitmap_destroy(s_battery_bitmap_080);
+	gbitmap_destroy(s_battery_bitmap_090);
+	gbitmap_destroy(s_battery_bitmap_100);
+	bitmap_layer_destroy(s_battery_layer);
 }
 
 static void tick_handler_time(struct tm *tick_time, TimeUnits units_changed) {
