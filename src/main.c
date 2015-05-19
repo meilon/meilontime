@@ -249,11 +249,14 @@ static void main_window_unload(Window *window) {
 	bitmap_layer_destroy(s_battery_layer);
 }
 
-static void tick_handler_time(struct tm *tick_time, TimeUnits units_changed) {
-	update_time();
-}
-static void tick_handler_date(struct tm *tick_time, TimeUnits units_changed) {
-	update_date();
+static void tick_handler(struct tm *tick_time, TimeUnits units_changed) {
+	APP_LOG(APP_LOG_LEVEL_DEBUG, "tick_handler() %d", units_changed);
+	if ((units_changed & MINUTE_UNIT) != 0)  {
+		update_time();
+	}
+	if ((units_changed & DAY_UNIT) != 0) {
+		update_date();
+	}
 }
 
 static void init() {
@@ -278,8 +281,7 @@ static void init() {
 	update_date();
 	
 	// Register with TickTimerService
-	tick_timer_service_subscribe(MINUTE_UNIT, tick_handler_time);
-	tick_timer_service_subscribe(DAY_UNIT, tick_handler_date);
+	tick_timer_service_subscribe(MINUTE_UNIT + DAY_UNIT, tick_handler);
 	
 	battery_state_service_subscribe(battery_handler);
 	battery_handler(battery_state_service_peek());
