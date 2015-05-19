@@ -18,6 +18,12 @@ static GBitmap *s_battery_bitmap_070;
 static GBitmap *s_battery_bitmap_080;
 static GBitmap *s_battery_bitmap_090;
 static GBitmap *s_battery_bitmap_100;
+//static BitmapLayer *s_dnd_layer;
+//static GBitmap *s_dnd_bitmap;
+static BitmapLayer *s_charging_layer;
+static GBitmap *s_charging_bitmap_incomplete;
+static GBitmap *s_charging_bitmap_complete;
+static GBitmap *s_9x9_bitmap_empty;
 #ifdef PBL_COLOR
 static BitmapLayer *s_background_layer;
 static GBitmap *s_background_bitmap;
@@ -87,7 +93,17 @@ static void battery_handler(BatteryChargeState charge_state) {
 		case 80: bitmap_layer_set_bitmap(s_battery_layer, s_battery_bitmap_080); break;
 		case 90: bitmap_layer_set_bitmap(s_battery_layer, s_battery_bitmap_090); break;
 		case 100:bitmap_layer_set_bitmap(s_battery_layer, s_battery_bitmap_100); break;
-	}	
+	}
+	
+	if (charge_state.is_plugged) {
+		if (charge_state.is_charging) {
+			bitmap_layer_set_bitmap(s_charging_layer, s_charging_bitmap_incomplete);
+		} else {
+			bitmap_layer_set_bitmap(s_charging_layer, s_charging_bitmap_complete);
+		}
+	} else {
+		bitmap_layer_set_bitmap(s_charging_layer, s_9x9_bitmap_empty);
+	}
 }
 
 static void main_window_load(Window *window) {
@@ -129,6 +145,33 @@ static void main_window_load(Window *window) {
 	bitmap_layer_set_bitmap(s_battery_layer, s_battery_bitmap_000);
 	layer_add_child(window_get_root_layer(window), bitmap_layer_get_layer(s_battery_layer));
 		
+	APP_LOG(APP_LOG_LEVEL_DEBUG, " - Charging");
+	s_9x9_bitmap_empty = gbitmap_create_with_resource(RESOURCE_ID_PNG_IMAGE_9x9_EMPTY);
+	s_charging_bitmap_complete = gbitmap_create_with_resource(RESOURCE_ID_PNG_IMAGE_CHARGING_COMPLETE);
+	s_charging_bitmap_incomplete = gbitmap_create_with_resource(RESOURCE_ID_PNG_IMAGE_CHARGING_INCOMPLETE);
+	s_charging_layer = bitmap_layer_create(GRect(110, 7, 9, 9));
+#ifdef PBL_PLATFORM_APLITE
+  bitmap_layer_set_compositing_mode(s_charging_layer, GCompOpAssign);
+#elif PBL_PLATFORM_BASALT
+  bitmap_layer_set_compositing_mode(s_charging_layer, GCompOpSet);
+#endif
+	bitmap_layer_set_bitmap(s_charging_layer, s_9x9_bitmap_empty);
+	layer_add_child(window_get_root_layer(window), bitmap_layer_get_layer(s_charging_layer));
+	
+	// Not implemented by Pebble SDK
+	/*
+	APP_LOG(APP_LOG_LEVEL_DEBUG, " - Do not Disturb");
+	s_dnd_bitmap = gbitmap_create_with_resource(RESOURCE_ID_PNG_IMAGE_DO_NOT_DISTURB);
+	s_dnd_layer = bitmap_layer_create(GRect(110, 7, 9, 9));
+#ifdef PBL_PLATFORM_APLITE
+  bitmap_layer_set_compositing_mode(s_dnd_layer, GCompOpAssign);
+#elif PBL_PLATFORM_BASALT
+  bitmap_layer_set_compositing_mode(s_dnd_layer, GCompOpSet);
+#endif
+	bitmap_layer_set_bitmap(s_dnd_layer, s_9x9_bitmap_empty);
+	layer_add_child(window_get_root_layer(window), bitmap_layer_get_layer(s_charging_layer));
+	*/
+	
 	// TIME
 	APP_LOG(APP_LOG_LEVEL_DEBUG, " - Time");
 	// Create time TextLayer

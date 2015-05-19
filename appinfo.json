@@ -9,6 +9,26 @@
     "resources": {
         "media": [
             {
+                "file": "images/do-not-disturb.png",
+                "name": "PNG_IMAGE_DO_NOT_DISTURB",
+                "type": "png"
+            },
+            {
+                "file": "images/charging-incomplete.png",
+                "name": "PNG_IMAGE_CHARGING_INCOMPLETE",
+                "type": "png"
+            },
+            {
+                "file": "images/charging-complete.png",
+                "name": "PNG_IMAGE_CHARGING_COMPLETE",
+                "type": "png"
+            },
+            {
+                "file": "images/9x9-empty.png",
+                "name": "PNG_IMAGE_9x9_EMPTY",
+                "type": "png"
+            },
+            {
                 "characterRegex": "[a-zA-Z0-9.]",
                 "file": "fonts/OSP-DIN.ttf",
                 "name": "FONT_OSP_DIN_BOLD_24",
