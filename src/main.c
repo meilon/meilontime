@@ -27,6 +27,8 @@ static GBitmap *s_9x9_bitmap_empty;
 #ifdef PBL_COLOR
 static BitmapLayer *s_background_layer;
 static GBitmap *s_background_bitmap;
+#else
+static Layer *s_background_layer;
 #endif
 
 static void update_time() {
@@ -106,16 +108,28 @@ static void battery_handler(BatteryChargeState charge_state) {
 	}
 }
 
+static void background_layer_draw(Layer *layer, GContext *ctx) {
+	GRect bounds = layer_get_bounds(layer);
+
+	// Draw a black filled rectangle with sharp corners
+	graphics_context_set_fill_color(ctx, GColorBlack);
+	graphics_fill_rect(ctx, bounds, 0, GCornerNone);
+}
+
 static void main_window_load(Window *window) {
 	APP_LOG(APP_LOG_LEVEL_DEBUG, "main_window_load()");
 	
-#ifdef PBL_COLOR
 	APP_LOG(APP_LOG_LEVEL_DEBUG, " - Background");	
 	// Create GBitmap, then set to created BitmapLayer
-	s_background_bitmap = gbitmap_create_with_resource(RESOURCE_ID_PNG_IMAGE_BACKGROUND);
+#ifdef PBL_COLOR
 	s_background_layer = bitmap_layer_create(GRect(0, 0, 144, 168));
+	s_background_bitmap = gbitmap_create_with_resource(RESOURCE_ID_PNG_IMAGE_BACKGROUND);
 	bitmap_layer_set_bitmap(s_background_layer, s_background_bitmap);
 	layer_add_child(window_get_root_layer(window), bitmap_layer_get_layer(s_background_layer));
+#else
+	s_background_layer = layer_create(GRect(0,0,144,168));
+	layer_set_update_proc(s_background_layer, background_layer_draw);
+	layer_add_child(window_get_root_layer(window), s_background_layer);
 #endif
 	
 	APP_LOG(APP_LOG_LEVEL_DEBUG, " - Fonts");
@@ -172,48 +186,44 @@ static void main_window_load(Window *window) {
 	layer_add_child(window_get_root_layer(window), bitmap_layer_get_layer(s_charging_layer));
 	*/
 	
-	// TIME
-	APP_LOG(APP_LOG_LEVEL_DEBUG, " - Time");
-	// Create time TextLayer
-	s_time_layer = text_layer_create(GRect(0, 38, 137, 72));
-	text_layer_set_background_color(s_time_layer, GColorClear);
-	text_layer_set_text_color(s_time_layer, GColorBlack);
-
-	// Improve the layout to be more like a watchface
-	//text_layer_set_font(s_time_layer, fonts_get_system_font(FONT_KEY_BITHAM_42_BOLD));
-	text_layer_set_font(s_time_layer, s_time_font);
-	text_layer_set_text_alignment(s_time_layer, GTextAlignmentRight);
-
-	// Add it as a child layer to the Window's root layer
-	layer_add_child(window_get_root_layer(window), text_layer_get_layer(s_time_layer));
-	
 	// DATE
 	APP_LOG(APP_LOG_LEVEL_DEBUG, " - Date");
-	// Create date TextLayer
-	s_date_layer = text_layer_create(GRect(0, 25, 137, 50));
+	s_date_layer = text_layer_create(GRect(0, 25, 137, 28));
 	text_layer_set_background_color(s_date_layer, GColorClear);
+#ifdef PBL_COLOR
 	text_layer_set_text_color(s_date_layer, GColorBlack);
-
-	// Improve the layout to be more like a watchface
+#else
+	text_layer_set_text_color(s_date_layer, GColorWhite);
+#endif
 	text_layer_set_font(s_date_layer, s_text_font);
 	text_layer_set_text_alignment(s_date_layer, GTextAlignmentRight);
-
-	// Add it as a child layer to the Window's root layer
 	layer_add_child(window_get_root_layer(window), text_layer_get_layer(s_date_layer));
 	
 	// DAY
 	APP_LOG(APP_LOG_LEVEL_DEBUG, " - Day");
-	// Create date TextLayer
-	s_day_layer = text_layer_create(GRect(0, 116, 137, 50));
+	s_day_layer = text_layer_create(GRect(0, 116, 137, 28));
 	text_layer_set_background_color(s_day_layer, GColorClear);
+#ifdef PBL_COLOR
 	text_layer_set_text_color(s_day_layer, GColorBlack);
-
-	// Improve the layout to be more like a watchface
+#else
+	text_layer_set_text_color(s_day_layer, GColorWhite);
+#endif
 	text_layer_set_font(s_day_layer, s_text_font);
 	text_layer_set_text_alignment(s_day_layer, GTextAlignmentRight);
-
-	// Add it as a child layer to the Window's root layer
 	layer_add_child(window_get_root_layer(window), text_layer_get_layer(s_day_layer));
+	
+	// TIME
+	APP_LOG(APP_LOG_LEVEL_DEBUG, " - Time");
+	s_time_layer = text_layer_create(GRect(0, 38, 137, 72));
+	text_layer_set_background_color(s_time_layer, GColorClear);
+#ifdef PBL_COLOR
+	text_layer_set_text_color(s_time_layer, GColorBlack);
+#else
+	text_layer_set_text_color(s_time_layer, GColorWhite);
+#endif	
+	text_layer_set_font(s_time_layer, s_time_font);
+	text_layer_set_text_alignment(s_time_layer, GTextAlignmentRight);
+	layer_add_child(window_get_root_layer(window), text_layer_get_layer(s_time_layer));
 }
 
 static void main_window_unload(Window *window) {
